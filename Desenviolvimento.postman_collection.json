@@ -1,0 +1,198 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Desenviolvimento",
+		"_postman_id": "a0654c24-d3b7-5b91-7865-24734220c302",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Teste",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"/*!",
+							"*   Gerador e Validador de CPF v3.1.1",
+							"*   http://tiagoporto.github.io/gerador-validador-cpf",
+							"*   Copyright (c) 2014-2016 Tiago Porto (http://tiagoporto.com)",
+							"*   Released under the MIT license",
+							"*/",
+							"CPF=function(){function r(r){for(var t=null,n=0;9>n;++n)t+=r.toString().charAt(n)*(10-n);var e=t%11,a=2>e?0:11-e;return a}function t(r){for(var t=null,n=0;10>n;++n)t+=r.toString().charAt(n)*(11-n);var e=t%11,a=2>e?0:11-e;return a}function n(r,t){var n=\".\",e=\"-\";return\"digits\"===t?(n=\"\",e=\"\"):\"checker\"===t&&(n=\"\",e=\"-\"),r.length>11?\"The value contains error. Has more than 11 digits.\":r.length<11?\"The value contains error. Has fewer than 11 digits.\":r.slice(0,3)+n+r.slice(3,6)+n+r.slice(6,9)+e+r.slice(9,11)}var e=function(){};return e.generate=function(e){for(var a=\"\",i=0;9>i;++i)a+=Math.floor(9*Math.random())+\"\";var o=r(a),u=a+o+t(a+o);return n(u,e)},e.validate=function(n){var e=n.replace(/\\.|\\-|\\s/g,\"\"),a=e.substring(0,9),i=e.substring(9,11);if(11!==e.length)return!1;for(var o=0;10>o;o++)if(\"\"+a+i===Array(12).join(o))return!1;var u=r(a),c=t(a+\"\"+u);return i.toString()===u.toString()+c.toString()?!0:!1},e.format=function(r,t){var e=r.replace(/[^\\d]/g,\"\");return n(e,t)},e}();",
+							"",
+							"postman.setEnvironmentVariable(\"cpf\", CPF.format(CPF.generate(), 'digits'));"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/extensions/test/customer/{{customerId}}",
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Application-Id",
+						"value": "{{applicationId}}",
+						"description": ""
+					},
+					{
+						"key": "x-organization-slug",
+						"value": "{{organizationSlug}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": "",
+						"disabled": true
+					},
+					{
+						"key": "X-Application-Key",
+						"value": "{{applicationKey}}",
+						"description": "",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"description": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "OnBoard",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"/*!",
+							"*   Gerador e Validador de CPF v3.1.1",
+							"*   http://tiagoporto.github.io/gerador-validador-cpf",
+							"*   Copyright (c) 2014-2016 Tiago Porto (http://tiagoporto.com)",
+							"*   Released under the MIT license",
+							"*/",
+							"CPF=function(){function r(r){for(var t=null,n=0;9>n;++n)t+=r.toString().charAt(n)*(10-n);var e=t%11,a=2>e?0:11-e;return a}function t(r){for(var t=null,n=0;10>n;++n)t+=r.toString().charAt(n)*(11-n);var e=t%11,a=2>e?0:11-e;return a}function n(r,t){var n=\".\",e=\"-\";return\"digits\"===t?(n=\"\",e=\"\"):\"checker\"===t&&(n=\"\",e=\"-\"),r.length>11?\"The value contains error. Has more than 11 digits.\":r.length<11?\"The value contains error. Has fewer than 11 digits.\":r.slice(0,3)+n+r.slice(3,6)+n+r.slice(6,9)+e+r.slice(9,11)}var e=function(){};return e.generate=function(e){for(var a=\"\",i=0;9>i;++i)a+=Math.floor(9*Math.random())+\"\";var o=r(a),u=a+o+t(a+o);return n(u,e)},e.validate=function(n){var e=n.replace(/\\.|\\-|\\s/g,\"\"),a=e.substring(0,9),i=e.substring(9,11);if(11!==e.length)return!1;for(var o=0;10>o;o++)if(\"\"+a+i===Array(12).join(o))return!1;var u=r(a),c=t(a+\"\"+u);return i.toString()===u.toString()+c.toString()?!0:!1},e.format=function(r,t){var e=r.replace(/[^\\d]/g,\"\");return n(e,t)},e}();",
+							"",
+							"postman.setEnvironmentVariable(\"cpf\", CPF.format(CPF.generate(), 'digits'));"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/extensions/v1/onBoard",
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Application-Id",
+						"value": "{{applicationId}}",
+						"description": ""
+					},
+					{
+						"key": "x-organization-slug",
+						"value": "{{organizationSlug}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "X-Application-Key",
+						"value": "{{applicationKey}}",
+						"description": "",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"description": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"cpfToken\": \"jsdfhkjxbvksdjfbksjdf\",\n    \"cartoes\": [\n        {\n            \"DN\": \"2001\"\n        },\n        {\n            \"DN\": \"2002\"\n        }\n    ]\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "ganhometro",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"/*!",
+							"*   Gerador e Validador de CPF v3.1.1",
+							"*   http://tiagoporto.github.io/gerador-validador-cpf",
+							"*   Copyright (c) 2014-2016 Tiago Porto (http://tiagoporto.com)",
+							"*   Released under the MIT license",
+							"*/",
+							"CPF=function(){function r(r){for(var t=null,n=0;9>n;++n)t+=r.toString().charAt(n)*(10-n);var e=t%11,a=2>e?0:11-e;return a}function t(r){for(var t=null,n=0;10>n;++n)t+=r.toString().charAt(n)*(11-n);var e=t%11,a=2>e?0:11-e;return a}function n(r,t){var n=\".\",e=\"-\";return\"digits\"===t?(n=\"\",e=\"\"):\"checker\"===t&&(n=\"\",e=\"-\"),r.length>11?\"The value contains error. Has more than 11 digits.\":r.length<11?\"The value contains error. Has fewer than 11 digits.\":r.slice(0,3)+n+r.slice(3,6)+n+r.slice(6,9)+e+r.slice(9,11)}var e=function(){};return e.generate=function(e){for(var a=\"\",i=0;9>i;++i)a+=Math.floor(9*Math.random())+\"\";var o=r(a),u=a+o+t(a+o);return n(u,e)},e.validate=function(n){var e=n.replace(/\\.|\\-|\\s/g,\"\"),a=e.substring(0,9),i=e.substring(9,11);if(11!==e.length)return!1;for(var o=0;10>o;o++)if(\"\"+a+i===Array(12).join(o))return!1;var u=r(a),c=t(a+\"\"+u);return i.toString()===u.toString()+c.toString()?!0:!1},e.format=function(r,t){var e=r.replace(/[^\\d]/g,\"\");return n(e,t)},e}();",
+							"",
+							"postman.setEnvironmentVariable(\"cpf\", CPF.format(CPF.generate(), 'digits'));"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/extensions/ganhometro/",
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Application-Id",
+						"value": "{{applicationId}}",
+						"description": "",
+						"disabled": true
+					},
+					{
+						"key": "x-organization-slug",
+						"value": "{{organizationSlug}}",
+						"description": "",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": "",
+						"disabled": true
+					},
+					{
+						"key": "X-Application-Key",
+						"value": "{{applicationKey}}",
+						"description": "",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"description": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"cpfToken\": \"jsdfhkjxbvksdjfbksjdf\",\n    \"cartoes\": [\n        {\n            \"DN\": \"2001\"\n        },\n        {\n            \"DN\": \"2002\"\n        }\n    ]\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
